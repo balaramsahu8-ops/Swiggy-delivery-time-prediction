@@ -26,17 +26,16 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1
+          aws-region: ap-south-2
 
       - name: DVC Pull
         run: |
           dvc pull
 
-      - name: Evaluate and Register Current Model
+      - name: Register Current Model
         env:
           DAGSHUB_USER_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
-        run: |
-          dvc repro evaluation
+        run: |          
           python src/models/register_model.py
 
       - name: Test Model Registry
