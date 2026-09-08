@@ -157,6 +157,8 @@ if __name__ == "__main__":
             model,
             "delivery_time_pred_model",
             signature=model_signature,
+            serialization_format="pickle",
+            registered_model_name="delivery_time_pred_model",
             skops_trusted_types=[
                 "collections.OrderedDict",
                 "lightgbm.basic.Booster",

@@ -32,6 +32,13 @@ jobs:
         run: |
           dvc pull
 
+      - name: Evaluate and Register Current Model
+        env:
+          DAGSHUB_USER_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
+        run: |
+          dvc repro evaluation
+          python src/models/register_model.py
+
       - name: Test Model Registry
         env:
           DAGSHUB_USER_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
