@@ -141,8 +141,8 @@ if __name__ == "__main__":
         mlflow.log_metrics({f"CV {num}": score for num, score in enumerate(-cv_scores)})
         
         # mlflow dataset input datatype
-        train_data_input = mlflow.data.from_pandas(train_data,targets=TARGET)
-        test_data_input = mlflow.data.from_pandas(test_data,targets=TARGET)
+        train_data_input = mlflow.data.from_pandas(train_data.head(100), targets=TARGET)
+        test_data_input = mlflow.data.from_pandas(test_data.head(100), targets=TARGET)
         
         # log input
         mlflow.log_input(dataset=train_data_input,context="training")
